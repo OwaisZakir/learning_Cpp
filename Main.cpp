@@ -4,7 +4,6 @@
 // ============================================================
 
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main()
@@ -210,6 +209,23 @@ int main()
          << ((5 > 3) || (8 < 6)) << endl; // true
 
     cout << "!(5 > 3): " << (!(5 > 3)) << endl; // false
+
+    // --------------------------------------------------------
+    // SECTION 12: Binary , Octal, Decimal, Hexadecimal
+    // ab programming me agr apka number start hota h with
+    // 123 => hoga Decimal
+    // 0123 => hoga Octal
+    // 0b,0B => hoga Binary
+    // 0x,0X => hoga Hexa
+    // --------------------------------------------------------
+
+    // and isko istarah convert krty hani like
+    // 012 = Octal hota 8^0 isi trah right sy one by ine bahta h
+    // same for binary 2^ 
+    // hex alag hota h ismain hita h A = 10 , B = 11
+    cout << 012;
+    cout << 0XA;
+
 
     return 0;
 }
