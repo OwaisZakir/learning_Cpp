@@ -1,160 +1,215 @@
-// Learning With Documentation
+// ============================================================
+// C++ LEARNING NOTES — CHAPTER 01
+// Topics: Variables, Data Types, Conversion, ASCII, Operators
+// ============================================================
+
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
 {
-    int globalOne = 1;
-    int globalTwo = 10;
+    // --------------------------------------------------------
+    // SECTION 1: VARIABLES
+    // Syntax: dataType variableName = value;
+    // --------------------------------------------------------
 
-    // // DataType variableName = value;
-    // int pocketMoney = 2000; // For Numbers
-    // int tutionFee = 500;
-    // int myBalance = pocketMoney - tutionFee;
+    int pocketMoney = 2000;
+    int tuitionFee = 500;
+    int balance = pocketMoney - tuitionFee;
 
-    // cout << " Salam, Owais Zakir" << endl;
-    // cout << "Your Pocket Money Is: " << pocketMoney << endl;
-    // cout << "Your Tution Fee Is: " << tutionFee << endl;
-    // cout << "Your Balance Is: " << myBalance << endl;
+    cout << "Salam, Owais!" << endl;
+    cout << "Pocket money: " << pocketMoney << endl;
+    cout << "Tuition fee: " << tuitionFee << endl;
+    cout << "Remaining balance: " << balance << endl;
 
-    // Constants are variables whose value cannot be changed once assigned
-    // mostly we use caps lock letters for constants
-    // const int PI = 3.14; // For Constants
-    // PI = 3.14159; // This will cause an error because PI is a constant
+    // --------------------------------------------------------
+    // SECTION 2: CONSTANTS
+    // A const object cannot be reassigned after initialization.
+    // --------------------------------------------------------
 
-    // We Called 7.2 ,3.14 not dacimal but we called it flooting point numbers
+    const double PI = 3.14159;
+    cout << "\nPI: " << PI << endl;
 
-    // How many types of data types are there in C++?;
-    // There are 6 types of data types in C++:
-    // 1. int - For Whole Numbers
-    // 2. float - For Decimal Numbers
-    // 3. double - For Decimal Numbers
-    // 4. char - For Single Character
-    // 5. bool - For True or False
-    // 6. void - For No Value
+    // PI = 3.14; // Uncommenting this causes a compilation error.
 
-    // ---------------------------------
-    // Now we check prectical examples of all data types in C++:
+    // --------------------------------------------------------
+    // SECTION 3: FUNDAMENTAL DATA TYPES AND sizeof
+    // Exact sizes can vary by implementation, except sizeof(char)
+    // is always 1 byte.
+    // --------------------------------------------------------
 
-    // int age = 20;         // int
-    // float height = 5.9;   // float
-    // double weight = 70.5; // double
-    // char grade = 'A';     // char
-    // bool isPassed = true; // bool
-    // // void is not a variable type; it represents the absence of a value.
+    int age = 20;
+    float height = 5.9f;
+    double weight = 70.5;
+    char grade = 'A';
+    bool isPassed = true;
 
-    // cout << " Intger: " << age << "sizeOf: " << sizeof(age) << "\n"
-    //      << "Float: " << height << "sizeOf: " << sizeof(height) << "\n"
-    //      << "Double: " << weight << "sizeOf: " << sizeof(weight) << "\n"
-    //      << "Char: " << grade << "sizeOf: " << sizeof(grade) << "\n"
-    //      << "Bool: " << isPassed << "sizeOf: " << sizeof(isPassed) << "\n";
+    cout << "\n--- Data Types ---" << endl;
+    cout << "int: " << age
+         << " | sizeof: " << sizeof(age) << " byte(s)" << endl;
 
-    // -------------- Now we learn about the garbage values in c++ --------------
-    // Garbage values are the random values that are stored in variables before they are initialized.
+    cout << "float: " << height
+         << " | sizeof: " << sizeof(height) << " byte(s)" << endl;
+
+    cout << "double: " << weight
+         << " | sizeof: " << sizeof(weight) << " byte(s)" << endl;
+
+    cout << "char: " << grade
+         << " | sizeof: " << sizeof(grade) << " byte(s)" << endl;
+
+    cout << "bool: " << boolalpha << isPassed
+         << " | sizeof: " << sizeof(isPassed) << " byte(s)" << endl;
+
+    // void represents the absence of a value; it is not a normal
+    // object type that you can declare as: void x = ...;
+
+    // --------------------------------------------------------
+    // SECTION 4: INITIALIZATION — AVOID UNINITIALIZED LOCALS
+    // --------------------------------------------------------
+
+    int safeValue{}; // Value-initialized to zero.
+    cout << "\nInitialized value: " << safeValue << endl;
+
     // int garbageValue;
-    // cout << "Garbage Value: " << garbageValue << endl;
-    // // output is random val bcx its not initialized yet
+    // cout << garbageValue; // Do not read an uninitialized local int.
+    // Its value is indeterminate; reading it this way is unsafe.
 
-    // Type Conversion in C++;
-    // implicit type conversion
-    // Explicit type conversion
-    // Type casting
+    // --------------------------------------------------------
+    // SECTION 5: TYPE CONVERSION
+    // --------------------------------------------------------
 
-    // Pehly smjho type conversion hota kya h
-    // kisi cheiz ka ghar tabdeel krna type conversion hota h
+    // 5A. Implicit conversion: int -> double
+    int intValue = 10;
+    double doubleValue = intValue;
 
-    //--------- Implicit / widning Type Conversion -----------
-    // int intValue = 10;
-    // double doubleValue = intValue; // Implicit type conversion from int to double
-    // cout << "Implicit Type Conversion: " << doubleValue << "\n"
-    //      << "sizeOf: " << sizeof(doubleValue)
-    //      << "\n"
-    //      << "Implicit Type Conversion: " << intValue
-    //      << "\n"
-    //      << "sizeOf: " << sizeof(intValue)
-    //      << endl;
+    cout << "\n--- Implicit Conversion ---" << endl;
+    cout << "intValue: " << intValue << endl;
+    cout << "doubleValue: " << doubleValue << endl;
 
-    // jb ap kisi choty byt k data  ko bari byt k data me convert krty ho to usy implicit type conversion kehty h
+    // 5B. Floating-point -> int: fractional part is truncated.
+    double decimalValue = 10.75;
+    int truncatedValue = decimalValue;
 
-    //--------- Explicit / Narrowing Type Conversion -----------
-    // is main apko khud mention krna hota h type ka mtlb ismian
-    // ismian apko type cast krni hoti h like
-    // Exemple:
-    // int intValue2 = 10, intValue3 = 3;
-    // int devoidedValue = intValue2 / intValue3; // This will give 3 because both are integers
-    // double doubleValue2 = (double)intValue2 / intValue3; // This will give 3.33333 because we are explicitly converting int to double
-    // cout << "Explicit Type Conversion: " << doubleValue2 << "\n"
-    //         << "sizeOf: " << sizeof(doubleValue2)
-    //         << "\n"
-    //         << "Explicit Type Conversion: " << devoidedValue
-    //         << "\n"
-    //         << "sizeOf: " << sizeof(devoidedValue)
-    //         << endl;
+    cout << "\n--- Conversion to int ---" << endl;
+    cout << "Original: " << decimalValue << endl;
+    cout << "Truncated: " << truncatedValue << endl;
 
-    // ye tb hota h jb ap ksisi choty byt k data ko bari byt k data me convert krty ho to usy explicit type conversion kehty h
-    // ye yaad krna higa
-    // Bohat important cheiz ye h k hr lang me charectore k lye ek value hoti h usko bolty hain
-    // ASCII Value
-    // 1 = 48
-    // A = 65
-    // a = 97
-    // jb ap char ko kisi me covert krogay to apko uski ASCII value milay gi
-    // when we perform arthmetic oprarion bitween 2 char it will be use the ASCII
+    // 5C. Integer division vs floating-point division
+    int numerator = 10;
+    int denominator = 3;
 
-    // char charValue = 'a';
-    // cout << charValue << "\n"
-    // << (int) charValue
-    // << endl;
+    int integerDivision = numerator / denominator;
+    double floatingDivision =
+        static_cast<double>(numerator) / denominator;
 
-    // ----------- Opratores -------------------
-    // Unary , Binary
-    // jaha single oprante hon ussy Unary bolty haind
-    // and dubble waly Binary
+    cout << "\n--- Division ---" << endl;
+    cout << "Integer division: " << integerDivision << endl;
+    cout << "Floating-point division: " << floatingDivision << endl;
 
-    // ++ and -- we use it in 2 way
-    // pree
-    // post
-    // a++ / ++a
-    // a-- / --a
+    // 5D. Explicit conversion using static_cast
+    double price = 99.99;
+    int wholePrice = static_cast<int>(price);
 
-    // int valOne = 20, valTwo = 5;
+    cout << "\nExplicit conversion: " << wholePrice << endl;
 
-    // cout << valOne + valTwo << "\n"
-    //      << valOne - valTwo << "\n"
-    //      << valOne * valTwo << "\n"
-    //      << valOne / valTwo << "\n"
-    //      << valOne % valTwo << "\n";
+    // --------------------------------------------------------
+    // SECTION 6: CHARACTERS AND CHARACTER CODES
+    // A char can represent a character; numeric conversion
+    // shows its code in the execution character set.
+    // ASCII values: '1' = 49, 'A' = 65, 'a' = 97.
+    // Note: numeric 1 is not the character '1'.
+    // --------------------------------------------------------
 
-    // cout << valOne++ << "\n"; // 20
-    // valOne = 20;
+    char letter = 'a';
 
-    // cout << ++valOne << "\n"; // 21
-    // valOne = 20;
+    cout << "\n--- Character ---" << endl;
+    cout << "Character: " << letter << endl;
+    cout << "Character code: "
+         << static_cast<int>(letter) << endl;
 
-    // cout << --valOne << "\n"; // 19
-    // valOne = 20;
+    cout << "Numeric 1: " << 1 << endl;
+    cout << "Character '1': " << '1' << endl;
+    cout << "Code of character '1': "
+         << static_cast<int>('1') << endl;
 
-    // cout << valOne-- << "\n"; // 20
+    // --------------------------------------------------------
+    // SECTION 7: ARITHMETIC OPERATORS
+    // +, -, *, /, %
+    // --------------------------------------------------------
 
-    // --------- Relational Opratores ---------
-    //  == , < , > => , >= , != ,etc...
-    // int relationalIntOne = 2, relationalIntTwo = 4;
+    int valOne = 20;
+    int valTwo = 5;
 
-    // cout << (relationalIntOne <= relationalIntTwo) << "\n"
-    //      << (relationalIntOne < relationalIntTwo) << "\n"
-    //      << (relationalIntOne >= relationalIntTwo) << "\n"
-    //      << (relationalIntOne > relationalIntTwo) << endl;
+    cout << "\n--- Arithmetic Operators ---" << endl;
+    cout << "Addition: " << valOne + valTwo << endl;
+    cout << "Subtraction: " << valOne - valTwo << endl;
+    cout << "Multiplication: " << valOne * valTwo << endl;
+    cout << "Division: " << valOne / valTwo << endl;
+    cout << "Remainder: " << valOne % valTwo << endl;
 
-    // ---- assignment opratrores -------
-    // relationalIntOne += 10;
-    // cout << relationalIntOne;
+    // --------------------------------------------------------
+    // SECTION 8: INCREMENT AND DECREMENT
+    // Prefix: update first, then produce the new value.
+    // Postfix: produce the old value, then update.
+    // --------------------------------------------------------
 
-    // OR and AND opratrores
-    // cout << ((relationalIntOne <= relationalIntTwo) && (relationalIntOne == 1)) << "\n"
-    //      << ((relationalIntOne <= relationalIntTwo) || (relationalIntOne == 1));
+    int counter = 20;
 
-    // cout << (globalOne != globalTwo) << "\n"
-    //      << (globalOne != globalOne) << endl;
-    cout << ((5 > 3) && (8 < 6));
+    cout << "\n--- Increment / Decrement ---" << endl;
+    cout << "Post-increment: " << counter++ << endl;     // prints 20
+    cout << "After post-increment: " << counter << endl; // 21
+
+    counter = 20;
+    cout << "Pre-increment: " << ++counter << endl; // prints 21
+
+    counter = 20;
+    cout << "Pre-decrement: " << --counter << endl; // prints 19
+
+    counter = 20;
+    cout << "Post-decrement: " << counter-- << endl;     // prints 20
+    cout << "After post-decrement: " << counter << endl; // 19
+
+    // --------------------------------------------------------
+    // SECTION 9: RELATIONAL OPERATORS
+    // ==, !=, <, >, <=, >=
+    // Results are bool values.
+    // --------------------------------------------------------
+
+    int first = 2;
+    int second = 4;
+
+    cout << "\n--- Relational Operators ---" << endl;
+    cout << boolalpha;
+    cout << "first <= second: " << (first <= second) << endl;
+    cout << "first < second: " << (first < second) << endl;
+    cout << "first >= second: " << (first >= second) << endl;
+    cout << "first > second: " << (first > second) << endl;
+    cout << "first != second: " << (first != second) << endl;
+    cout << "first == second: " << (first == second) << endl;
+
+    // --------------------------------------------------------
+    // SECTION 10: ASSIGNMENT OPERATORS
+    // =, +=, -=, *=, /=, %=
+    // --------------------------------------------------------
+
+    int score = 10;
+    score += 5; // Same effect as score = score + 5
+    cout << "\nScore after += 5: " << score << endl;
+
+    // --------------------------------------------------------
+    // SECTION 11: LOGICAL OPERATORS
+    // && = AND, || = OR, ! = NOT
+    // --------------------------------------------------------
+
+    cout << "\n--- Logical Operators ---" << endl;
+    cout << "(5 > 3) && (8 < 6): "
+         << ((5 > 3) && (8 < 6)) << endl; // false
+
+    cout << "(5 > 3) || (8 < 6): "
+         << ((5 > 3) || (8 < 6)) << endl; // true
+
+    cout << "!(5 > 3): " << (!(5 > 3)) << endl; // false
+
     return 0;
 }
