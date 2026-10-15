@@ -1,301 +1,249 @@
-// // ============================================================
-// // C++ LEARNING NOTES — CHAPTER 01
-// // Topics: Variables, Data Types, Conversion, ASCII, Operators
-// // ============================================================
 
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
 int main()
 {
-     //      // --------------------------------------------------------
-     //      // SECTION 1: VARIABLES
-     //      // Syntax: dataType variableName = value;
-     //      // --------------------------------------------------------
+     // ==========================================
+     // 1. VARIABLES
+     // ==========================================
+     int pocketMoney = 2000;
+     int tuitionFee = 500;
+     int balance = pocketMoney - tuitionFee;
 
-     //      int pocketMoney = 2000;
-     //      int tuitionFee = 500;
-     //      int balance = pocketMoney - tuitionFee;
+     cout << "=== Variables ===\n";
+     cout << "Pocket Money: " << pocketMoney << '\n';
+     cout << "Tuition Fee: " << tuitionFee << '\n';
+     cout << "Balance: " << balance << "\n\n";
 
-     //      cout << "Salam, Owais!" << endl;
-     //      cout << "Pocket money: " << pocketMoney << endl;
-     //      cout << "Tuition fee: " << tuitionFee << endl;
-     //      cout << "Remaining balance: " << balance << endl;
+     // ==========================================
+     // 2. CONSTANTS
+     // ==========================================
+     const double PI = 3.14159;
 
-     //      // --------------------------------------------------------
-     //      // SECTION 2: CONSTANTS
-     //      // A const object cannot be reassigned after initialization.
-     //      // --------------------------------------------------------
+     cout << "=== Constants ===\n";
+     cout << "PI: " << PI << "\n\n";
 
-     //      const double PI = 3.14159;
-     //      cout << "\nPI: " << PI << endl;
+     // PI = 3.14; // Error: const value cannot change
 
-     //      // PI = 3.14; // Uncommenting this causes a compilation error.
+     // ==========================================
+     // 3. DATA TYPES
+     // ==========================================
+     int age = 20;
+     float height = 5.9f;
+     double weight = 70.5;
+     char grade = 'A';
+     bool isPassed = true;
 
-     //      // --------------------------------------------------------
-     //      // SECTION 3: FUNDAMENTAL DATA TYPES AND sizeof
-     //      // Exact sizes can vary by implementation, except sizeof(char)
-     //      // is always 1 byte.
-     //      // --------------------------------------------------------
+     cout << "=== Data Types ===\n";
+     cout << "Age: " << age << '\n';
+     cout << "Height: " << height << '\n';
+     cout << "Weight: " << weight << '\n';
+     cout << "Grade: " << grade << '\n';
 
-     //      int age = 20;
-     //      float height = 5.9f;
-     //      double weight = 70.5;
-     //      char grade = 'A';
-     //      bool isPassed = true;
+     cout << boolalpha;
+     cout << "Passed: " << isPassed << '\n';
 
-     //      cout << "\n--- Data Types ---" << endl;
-     //      cout << "int: " << age
-     //           << " | sizeof: " << sizeof(age) << " byte(s)" << endl;
+     cout << "Size of int: " << sizeof(age) << '\n';
+     cout << "Size of float: " << sizeof(height) << '\n';
+     cout << "Size of double: " << sizeof(weight) << '\n';
+     cout << "Size of char: " << sizeof(grade) << '\n';
+     cout << "Size of bool: " << sizeof(isPassed) << "\n\n";
 
-     //      cout << "float: " << height
-     //           << " | sizeof: " << sizeof(height) << " byte(s)" << endl;
+     // ==========================================
+     // 4. INITIALIZATION
+     // ==========================================
+     int safeValue{};
 
-     //      cout << "double: " << weight
-     //           << " | sizeof: " << sizeof(weight) << " byte(s)" << endl;
+     cout << "=== Initialization ===\n";
+     cout << "Safe value: " << safeValue << "\n\n";
 
-     //      cout << "char: " << grade
-     //           << " | sizeof: " << sizeof(grade) << " byte(s)" << endl;
+     // Always initialize local variables before using them.
+     // Reading an uninitialized local int is unsafe.
 
-     //      cout << "bool: " << boolalpha << isPassed
-     //           << " | sizeof: " << sizeof(isPassed) << " byte(s)" << endl;
+     // ==========================================
+     // 5. TYPE CONVERSION
+     // ==========================================
+     int intValue = 10;
+     double doubleValue = intValue; // Implicit conversion
 
-     //      // void represents the absence of a value; it is not a normal
-     //      // object type that you can declare as: void x = ...;
+     cout << "=== Type Conversion ===\n";
+     cout << "Integer to double: " << doubleValue << '\n';
 
-     //      // --------------------------------------------------------
-     //      // SECTION 4: INITIALIZATION — AVOID UNINITIALIZED LOCALS
-     //      // --------------------------------------------------------
+     double decimalValue = 10.75;
+     int convertedValue = static_cast<int>(decimalValue);
 
-     //      int safeValue{}; // Value-initialized to zero.
-     //      cout << "\nInitialized value: " << safeValue << endl;
+     cout << "Original: " << decimalValue << '\n';
+     cout << "Converted to int: " << convertedValue << '\n';
+     // Output: 10. Fraction is truncated, not rounded.
 
-     //      // int garbageValue;
-     //      // cout << garbageValue; // Do not read an uninitialized local int.
-     //      // Its value is indeterminate; reading it this way is unsafe.
+     int a = 10;
+     int b = 3;
 
-     //      // --------------------------------------------------------
-     //      // SECTION 5: TYPE CONVERSION
-     //      // --------------------------------------------------------
+     cout << "Integer division: " << a / b << '\n';
+     cout << "Floating division: "
+          << static_cast<double>(a) / b << "\n\n";
 
-     //      // 5A. Implicit conversion: int -> double
-     //      int intValue = 10;
-     //      double doubleValue = intValue;
+     // ==========================================
+     // 6. CHARACTERS AND ASCII
+     // ==========================================
+     char letter = 'A';
 
-     //      cout << "\n--- Implicit Conversion ---" << endl;
-     //      cout << "intValue: " << intValue << endl;
-     //      cout << "doubleValue: " << doubleValue << endl;
+     cout << "=== Characters ===\n";
+     cout << "Character: " << letter << '\n';
+     cout << "Character code: "
+          << static_cast<int>(letter) << '\n';
 
-     //      // 5B. Floating-point -> int: fractional part is truncated.
-     //      double decimalValue = 10.75;
-     //      int truncatedValue = decimalValue;
+     cout << "Number 1: " << 1 << '\n';
+     cout << "Character '1': " << '1' << '\n';
+     cout << "ASCII code of '1': "
+          << static_cast<int>('1') << "\n\n";
 
-     //      cout << "\n--- Conversion to int ---" << endl;
-     //      cout << "Original: " << decimalValue << endl;
-     //      cout << "Truncated: " << truncatedValue << endl;
+     // ASCII-compatible systems:
+     // '0' = 48, '1' = 49, 'A' = 65, 'a' = 97.
 
-     //      // 5C. Integer division vs floating-point division
-     //      int numerator = 10;
-     //      int denominator = 3;
+     // ==========================================
+     // 7. NUMBER SYSTEMS
+     // ==========================================
+     cout << "=== Number Systems ===\n";
 
-     //      int integerDivision = numerator / denominator;
-     //      double floatingDivision =
-     //          static_cast<double>(numerator) / denominator;
+     cout << "Decimal 10: " << 10 << '\n';
+     cout << "Octal 012: " << 012 << '\n';
+     cout << "Binary 0b1010: " << 0b1010 << '\n';
+     cout << "Hexadecimal 0xA: " << 0xA << "\n\n";
 
-     //      cout << "\n--- Division ---" << endl;
-     //      cout << "Integer division: " << integerDivision << endl;
-     //      cout << "Floating-point division: " << floatingDivision << endl;
+     // These all represent decimal 10.
+     // Binary literal 0b... is supported in C++14 and later.
+     // Hexadecimal digits: A=10, B=11, C=12, D=13, E=14, F=15.
 
-     //      // 5D. Explicit conversion using static_cast
-     //      double price = 99.99;
-     //      int wholePrice = static_cast<int>(price);
+     // ==========================================
+     // 8. ARITHMETIC OPERATORS
+     // ==========================================
+     int firstNumber = 20;
+     int secondNumber = 5;
 
-     //      cout << "\nExplicit conversion: " << wholePrice << endl;
+     cout << "=== Arithmetic ===\n";
+     cout << "Addition: " << firstNumber + secondNumber << '\n';
+     cout << "Subtraction: " << firstNumber - secondNumber << '\n';
+     cout << "Multiplication: " << firstNumber * secondNumber << '\n';
+     cout << "Division: " << firstNumber / secondNumber << '\n';
+     cout << "Remainder: " << firstNumber % secondNumber << "\n\n";
 
-     //      // --------------------------------------------------------
-     //      // SECTION 6: CHARACTERS AND CHARACTER CODES
-     //      // A char can represent a character; numeric conversion
-     //      // shows its code in the execution character set.
-     //      // ASCII values: '1' = 49, 'A' = 65, 'a' = 97.
-     //      // Note: numeric 1 is not the character '1'.
-     //      // --------------------------------------------------------
+     // ==========================================
+     // 9. INCREMENT AND DECREMENT
+     // ==========================================
+     cout << "=== Increment / Decrement ===\n";
 
-     //      char letter = 'a';
+     int x = 5;
 
-     //      cout << "\n--- Character ---" << endl;
-     //      cout << "Character: " << letter << endl;
-     //      cout << "Character code: "
-     //           << static_cast<int>(letter) << endl;
+     cout << "Post-increment: " << x++ << '\n';
+     // Prints 5 first, then x becomes 6.
 
-     //      cout << "Numeric 1: " << 1 << endl;
-     //      cout << "Character '1': " << '1' << endl;
-     //      cout << "Code of character '1': "
-     //           << static_cast<int>('1') << endl;
+     cout << "After post-increment: " << x << '\n';
+     // Prints 6.
 
-     //      // --------------------------------------------------------
-     //      // SECTION 7: ARITHMETIC OPERATORS
-     //      // +, -, *, /, %
-     //      // --------------------------------------------------------
+     x = 5;
 
-     //      int valOne = 20;
-     //      int valTwo = 5;
+     cout << "Pre-increment: " << ++x << '\n';
+     // x becomes 6 first, then prints 6.
 
-     //      cout << "\n--- Arithmetic Operators ---" << endl;
-     //      cout << "Addition: " << valOne + valTwo << endl;
-     //      cout << "Subtraction: " << valOne - valTwo << endl;
-     //      cout << "Multiplication: " << valOne * valTwo << endl;
-     //      cout << "Division: " << valOne / valTwo << endl;
-     //      cout << "Remainder: " << valOne % valTwo << endl;
+     x = 5;
 
-     //      // --------------------------------------------------------
-     //      // SECTION 8: INCREMENT AND DECREMENT
-     //      // Prefix: update first, then produce the new value.
-     //      // Postfix: produce the old value, then update.
-     //      // --------------------------------------------------------
+     cout << "Post-decrement: " << x-- << '\n';
+     // Prints 5 first, then x becomes 4.
 
-     //      int counter = 20;
+     cout << "After post-decrement: " << x << '\n';
+     // Prints 4.
 
-     //      cout << "\n--- Increment / Decrement ---" << endl;
-     //      cout << "Post-increment: " << counter++ << endl;     // prints 20
-     //      cout << "After post-increment: " << counter << endl; // 21
+     x = 5;
 
-     //      counter = 20;
-     //      cout << "Pre-increment: " << ++counter << endl; // prints 21
+     cout << "Pre-decrement: " << --x << "\n\n";
+     // x becomes 4 first, then prints 4.
 
-     //      counter = 20;
-     //      cout << "Pre-decrement: " << --counter << endl; // prints 19
+     // ==========================================
+     // 10. RELATIONAL OPERATORS
+     // ==========================================
+     int n1 = 2;
+     int n2 = 4;
 
-     //      counter = 20;
-     //      cout << "Post-decrement: " << counter-- << endl;     // prints 20
-     //      cout << "After post-decrement: " << counter << endl; // 19
+     cout << "=== Relational Operators ===\n";
+     cout << "n1 < n2: " << (n1 < n2) << '\n';
+     cout << "n1 > n2: " << (n1 > n2) << '\n';
+     cout << "n1 == n2: " << (n1 == n2) << '\n';
+     cout << "n1 != n2: " << (n1 != n2) << '\n';
+     cout << "n1 <= n2: " << (n1 <= n2) << '\n';
+     cout << "n1 >= n2: " << (n1 >= n2) << "\n\n";
 
-     //      // --------------------------------------------------------
-     //      // SECTION 9: RELATIONAL OPERATORS
-     //      // ==, !=, <, >, <=, >=
-     //      // Results are bool values.
-     //      // --------------------------------------------------------
+     // ==========================================
+     // 11. ASSIGNMENT OPERATORS
+     // ==========================================
+     int score = 10;
 
-     //      int first = 2;
-     //      int second = 4;
+     score += 5; // score = score + 5
+     cout << "Score after += 5: " << score << '\n';
 
-     //      cout << "\n--- Relational Operators ---" << endl;
-     //      cout << boolalpha;
-     //      cout << "first <= second: " << (first <= second) << endl;
-     //      cout << "first < second: " << (first < second) << endl;
-     //      cout << "first >= second: " << (first >= second) << endl;
-     //      cout << "first > second: " << (first > second) << endl;
-     //      cout << "first != second: " << (first != second) << endl;
-     //      cout << "first == second: " << (first == second) << endl;
+     score -= 2; // score = score - 2
+     cout << "Score after -= 2: " << score << "\n\n";
 
-     //      // --------------------------------------------------------
-     //      // SECTION 10: ASSIGNMENT OPERATORS
-     //      // =, +=, -=, *=, /=, %=
-     //      // --------------------------------------------------------
+     // ==========================================
+     // 12. LOGICAL OPERATORS
+     // ==========================================
+     cout << "=== Logical Operators ===\n";
 
-     //      int score = 10;
-     //      score += 5; // Same effect as score = score + 5
-     //      cout << "\nScore after += 5: " << score << endl;
+     cout << "AND: "
+          << ((5 > 3) && (8 < 6)) << '\n';
 
-     //      // --------------------------------------------------------
-     //      // SECTION 11: LOGICAL OPERATORS
-     //      // && = AND, || = OR, ! = NOT
-     //      // --------------------------------------------------------
+     cout << "OR: "
+          << ((5 > 3) || (8 < 6)) << '\n';
 
-     //      cout << "\n--- Logical Operators ---" << endl;
-     //      cout << "(5 > 3) && (8 < 6): "
-     //           << ((5 > 3) && (8 < 6)) << endl; // false
+     cout << "NOT: "
+          << (!(5 > 3)) << "\n\n";
 
-     //      cout << "(5 > 3) || (8 < 6): "
-     //           << ((5 > 3) || (8 < 6)) << endl; // true
+     // AND: both conditions must be true.
+     // OR: at least one condition must be true.
+     // NOT: reverses true/false.
 
-     //      cout << "!(5 > 3): " << (!(5 > 3)) << endl; // false
+     // ==========================================
+     // 13. USER INPUT: cin AND getline
+     // ==========================================
+     // Uncomment this section to test input.
 
-     //      // --------------------------------------------------------
-     //      // SECTION 12: Binary , Octal, Decimal, Hexadecimal
-     //      // ab programming me agr apka number start hota h with
-     //      // 123 => hoga Decimal
-     //      // 0123 => hoga Octal
-     //      // 0b,0B => hoga Binary
-     //      // 0x,0X => hoga Hexa
-     //      // --------------------------------------------------------
-
-     //      // and isko istarah convert krty hani like
-     //      // 012 = Octal hota 8^0 isi trah right sy one by ine bahta h
-     //      // same for binary 2^
-     //      // hex alag hota h ismain hita h A = 10 , B = 11
-     //      //     cout << 012;
-     //      //     cout << 0XA;
-
-     //      // --------------------------------------------------------
-     //      // SECTION 13: Take Input
-     //      // --------------------------------------------------------
-     //      // int inputOne, inputTwo ;
-     //      // cout << "Enter A Number:";
-     //      // cin >> inputOne >> inputTwo ;
-     //      // cout << "sum - " << inputOne + inputTwo <<  endl;
      // string name;
-     // int urage;
+     // int userAge;
 
-     //      // uncommint to see the before solution
-
-     //      // cout << "Enter your name:";
-     //      // cin >> name;
-     //      // cout << "Enter your age:";
-     //      // cin >> urage;
-     //      // cout << "Salam Your Name Is " << name << "\n"
-     //      //      << "And You Are " << urage << " Years Old";
-
-     //      // We use Getline to solve the probleme
-     //      // before it let see whats the probleme is
-     //      // when we enter 2 values togathor like it ask as
-     //      // enter your name and you enter Dev Tester
-     //      // means you enter the 2 values and it took both
-     //      // Dev as a name and Terster as an age thats absolutlly wrong
-     //      // So we use getline(cin,str)
-     //      // Exemple
-
-     // cout << "Enter your name:";
-     // getline(cin,name);  // now probleme has solved
-     // cout << "Enter your age:";
-     // cin >> urage;
-     // cout << "Salam Your Name Is " << name << "\n"
-     //      << "And You Are " << urage << " Years Old";
-     // now probleme is resolved
-     // Q K jb bhi user string input krta h to cpp boilta h mujhay agr \n or spance   mila to me next input longa to hum use krty hain is mathod ka jiski wajah sy hum
-
-     // but ab ek msla h me bs age uper krta hon
-
-     // cout << "Enter your age:";
-     // cin >> urage;
-     // cout << "Enter your name:";
+     // cout << "Enter your full name: ";
      // getline(cin, name);
-     // cout << "Salam Your Name Is " << name << "\n"
-     //      << "And You Are " << urage << " Years Old";
 
-     // msla ye h k buffer me \n rakh h usko htany h lye hum proifessional way me use krty hian
-     // how to fix it
-     //  fix using
-     // cin.ignore() => ye khali kr deta h buffrt clear kr deta h
+     // cout << "Enter your age: ";
+     // cin >> userAge;
 
-     // cout << "Enter your age:";
-     // cin >> urage;
-     // cout << "Enter your name:";
-     // cin.ignore();
-     // getline(cin, name);
-     // cout << "Salam Your Name Is " << name << "\n"
-     //      << "And You Are " << urage << " Years Old";
+     // cout << "Hello, " << name << '\n';
+     // cout << "Age: " << userAge << '\n';
 
-     //---------------------- Now we learn skaping mhtods and "\n" and endl -------------------
+     // getline(cin, name) reads a full line, including spaces.
+     // cin >> name reads only until whitespace.
 
-     // "\n" => fast
-     // aendl slow
-     // /"  for quots
-     // /t for tab space
-     // string uname = "chacha";
+     // If cin >> is used before getline(), a newline may remain
+     // in the input buffer. Use this to discard the rest of the line:
+     //
+     // cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-     // cout << "Salam, \"" << uname << "\"";
+     // ==========================================
+     // 14. NEWLINES AND ESCAPE SEQUENCES
+     // ==========================================
+     string userName = "chacha";
 
+     cout << "=== Text Formatting ===\n";
+     cout << "Hello, \"" << userName << "\"\n";
+     cout << "First line\nSecond line\n";
+     cout << "Column 1\tColumn 2\n";
+
+     // \n  = new line
+     // \t  = tab
+     // \"  = double quote
+     // endl = new line + flush output
 
      return 0;
 }
