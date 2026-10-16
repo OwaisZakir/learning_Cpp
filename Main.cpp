@@ -546,6 +546,164 @@ int main()
 //         cout << "Hello" << endl;
 //     }
 
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cout << "Hello" << endl;
+    }
+
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int n;
+    cin >> n;
+
+        for (int i = n; i >= 1; i-- ) {
+            cout << i << " " ;
+            }
+
+ return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    int count =  0;
+    cin >> n;
+    for(int i = 0; i <= n ; i++){
+        count += i;
+    }
+
+    cout << count; 
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+void factorial(int n) {
+    long long answer = 1;
+    
+    for (int i = 1; i <= n; i++) {
+        answer = answer * i;
+    }
+    
+    cout << answer;
+}
+#include <iostream>
+using namespace std;
+
+void printAllFactor(int n) {
+  
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            cout << i << " ";
+        }
+    }
+}
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    void checkPrime(int n) {
+        if (n <= 1) {
+            cout << "Not Prime";
+            return;
+        }
+
+        int count = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                count++;
+            }
+        }
+        
+        
+        if (count == 2) {
+            cout << "Prime";
+        } else {
+            cout << "Not Prime";
+        }
+    }
+};
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    
+    int sum = 0;
+    
+    
+    while (n > 0) {
+        int lastDigit = n % 10; 
+        sum += lastDigit;         
+        n = n / 10;               
+    }
+    
+    cout << sum;
+    
+    return 0;
+}
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int reverseNumber(int n) {
+        int reversed = 0;
+        
+        while (n > 0) {
+            int lastDigit = n % 10;          
+
+            reversed = reversed * 10 + lastDigit; 
+            
+            n = n / 10;     
+        }
+        
+        return reversed;
+    }
+};
+#include <iostream>
+using namespace std;
+
+void checkPalindrome(int n) {
+    if (n < 0) {
+        cout << "Not Palindrome";
+        return;
+    }
+
+    int original = n;
+    long long reversed = 0;
+    
+    while (n > 0) {
+        int lastDigit = n % 10;
+        reversed = reversed * 10 + lastDigit;
+        n = n / 10;
+    }
+    
+    if (original == reversed) {
+        cout << "Palindrome";
+    } else {
+        cout << "Not Palindrome";
+    }
+}
     return 0;
 }
 
