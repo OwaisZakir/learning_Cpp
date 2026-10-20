@@ -1,65 +1,34 @@
-/*
-===============================================================================
-C++ FUNDAMENTALS + CONTROL FLOW + LOOPS
-Organized notes, examples, and solved practice problems
-===============================================================================
-
-How to use:
-1. Save this file as cpp_fundamentals_control_flow_loops.cpp
-2. Compile with C++14 or newer.
-3. Run to see the example outputs.
-4. For interactive input practice, comment out other demonstration calls in main()
-   and uncomment demonstrateInput().
-
-Topics:
-1. Variables and constants
-2. Data types and sizeof
-3. Initialization
-4. Type conversion and division
-5. Characters and character codes
-6. Number systems
-7. Arithmetic operators
-8. Increment and decrement
-9. Relational, assignment, and logical operators
-10. Input and escape sequences
-11. Solved fundamentals problems
-12. if / else decision-making
-13. Solved control-flow problems
-14. for, while, and do-while loops
-15. Solved loop problems
-
-This is one complete program with exactly one main() function.
-===============================================================================
-*/
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <string>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <climits>
+
 using namespace std;
 
-// SECTION 1 — VARIABLES AND CONSTANTS
-void demonstrateVariablesAndConstants()
+// 1. Variables and Constants
+void demonstrateVariables()
 {
-    cout << "\n========== 1. VARIABLES AND CONSTANTS ==========\n";
+    cout << "\n=== VARIABLES AND CONSTANTS ===\n";
 
     int pocketMoney = 2000;
     int tuitionFee = 500;
-    int balance = pocketMoney - tuitionFee;
     const double PI = 3.14159;
 
-    cout << "Pocket money: Rs. " << pocketMoney << '\n';
-    cout << "Tuition fee:  Rs. " << tuitionFee << '\n';
-    cout << "Balance:      Rs. " << balance << '\n';
+    cout << "Pocket Money: " << pocketMoney << '\n';
+    cout << "Tuition Fee: " << tuitionFee << '\n';
+    cout << "Balance: " << pocketMoney - tuitionFee << '\n';
     cout << "PI: " << PI << '\n';
-
-    // PI = 3.14; // Error: a const variable cannot be reassigned.
 }
 
-// SECTION 2 — DATA TYPES AND sizeof
+// 2. Data Types
 void demonstrateDataTypes()
 {
-    cout << "\n========== 2. DATA TYPES AND sizeof ==========\n";
+    cout << "\n=== DATA TYPES ===\n";
 
     int age = 20;
     float height = 5.9f;
@@ -67,301 +36,276 @@ void demonstrateDataTypes()
     char grade = 'A';
     bool passed = true;
 
-    cout << "int age: " << age << " | bytes: " << sizeof(age) << '\n';
-    cout << "float height: " << height << " | bytes: " << sizeof(height) << '\n';
-    cout << "double weight: " << weight << " | bytes: " << sizeof(weight) << '\n';
-    cout << "char grade: " << grade << " | bytes: " << sizeof(grade) << '\n';
-    cout << boolalpha << "bool passed: " << passed
-         << " | bytes: " << sizeof(passed) << '\n'
-         << noboolalpha;
-
-    // sizeof(char) is always 1 byte. Other sizes may vary by implementation.
+    cout << "Age: " << age << '\n';
+    cout << "Height: " << height << '\n';
+    cout << "Weight: " << weight << '\n';
+    cout << "Grade: " << grade << '\n';
+    cout << boolalpha << "Passed: " << passed << '\n';
+    cout << "Size of int: " << sizeof(age) << " bytes\n";
+    cout << noboolalpha;
 }
 
-// SECTION 3 — INITIALIZATION
+// 3. Initialization
 void demonstrateInitialization()
 {
-    cout << "\n========== 3. INITIALIZATION ==========\n";
+    cout << "\n=== INITIALIZATION ===\n";
 
-    int safeValue{}; // Value-initialized to 0.
-    cout << "safeValue = " << safeValue << '\n';
+    int number{};
+    double decimal{};
+    string name{};
 
-    // Do not read an uninitialized local variable.
+    cout << "Number: " << number << '\n';
+    cout << "Decimal: " << decimal << '\n';
+    cout << "Name: " << name << '\n';
 }
 
-// SECTION 4 — TYPE CONVERSION AND DIVISION
+// 4. Type Conversion
 void demonstrateTypeConversion()
 {
-    cout << "\n========== 4. TYPE CONVERSION AND DIVISION ==========\n";
+    cout << "\n=== TYPE CONVERSION ===\n";
 
-    int wholeNumber = 10;
-    double convertedDouble = wholeNumber; // Implicit conversion: int to double.
-    double decimalNumber = 10.75;
-    int truncatedNumber = static_cast<int>(decimalNumber); // Fraction is removed.
-    int numerator = 10;
-    int denominator = 3;
+    int number = 10;
+    double converted = number;
 
-    cout << "int to double: " << convertedDouble << '\n';
-    cout << "10.75 converted to int: " << truncatedNumber << " (not rounded)\n";
-    cout << "Integer division 10 / 3: " << numerator / denominator << '\n';
-    cout << "Floating division 10 / 3: "
-         << static_cast<double>(numerator) / denominator << '\n';
+    double decimal = 10.75;
+    int truncated = static_cast<int>(decimal);
+
+    cout << "Converted: " << converted << '\n';
+    cout << "Truncated: " << truncated << '\n';
+    cout << "Integer Division: " << 10 / 3 << '\n';
+    cout << "Floating Division: "
+         << static_cast<double>(10) / 3 << '\n';
 }
 
-// SECTION 5 — CHARACTERS AND CHARACTER CODES
+// 5. Characters
 void demonstrateCharacters()
 {
-    cout << "\n========== 5. CHARACTERS AND CHARACTER CODES ==========\n";
+    cout << "\n=== CHARACTERS ===\n";
 
-    char letter = 'A';
-    cout << "Character: " << letter << '\n';
-    cout << "Code of 'A': " << static_cast<int>(letter) << '\n';
-    cout << "Number 1: " << 1 << '\n';
-    cout << "Character '1': " << '1' << '\n';
-    cout << "Code of character '1': " << static_cast<int>('1') << '\n';
-    cout << "ASCII-compatible codes: '0'=48, '1'=49, 'A'=65, 'a'=97\n";
+    char ch = 'A';
+
+    cout << "Character: " << ch << '\n';
+    cout << "Character code: " << static_cast<int>(ch) << '\n';
+    cout << "Code of digit 1: "
+         << static_cast<int>('1') << '\n';
 }
 
-// SECTION 6 — NUMBER SYSTEMS
+// 6. Number Systems
 void demonstrateNumberSystems()
 {
-    cout << "\n========== 6. NUMBER SYSTEMS ==========\n";
+    cout << "\n=== NUMBER SYSTEMS ===\n";
 
-    cout << "Decimal 10: " << 10 << '\n';
-    cout << "Octal 012: " << 012 << '\n';
-    cout << "Binary 0b1010: " << 0b1010 << '\n'; // C++14+
-    cout << "Hexadecimal 0xA: " << 0xA << '\n';
+    cout << "Decimal: " << 10 << '\n';
+    cout << "Octal: " << 012 << '\n';
+    cout << "Binary: " << 0b1010 << '\n';
+    cout << "Hexadecimal: " << 0xA << '\n';
 }
 
-// SECTION 7 — ARITHMETIC OPERATORS
+// 7. Arithmetic Operators
 void demonstrateArithmetic()
 {
-    cout << "\n========== 7. ARITHMETIC OPERATORS ==========\n";
+    cout << "\n=== ARITHMETIC OPERATORS ===\n";
 
-    int a = 20;
-    int b = 6;
+    int a = 20, b = 6;
 
-    cout << "Addition:       " << a + b << '\n';
-    cout << "Subtraction:    " << a - b << '\n';
+    cout << "Addition: " << a + b << '\n';
+    cout << "Subtraction: " << a - b << '\n';
     cout << "Multiplication: " << a * b << '\n';
-    cout << "Integer divide: " << a / b << '\n';
-    cout << "Remainder:      " << a % b << '\n';
+    cout << "Division: " << a / b << '\n';
+    cout << "Remainder: " << a % b << '\n';
 }
 
-// SECTION 8 — INCREMENT AND DECREMENT
+// 8. Increment and Decrement
 void demonstrateIncrementDecrement()
 {
-    cout << "\n========== 8. INCREMENT AND DECREMENT ==========\n";
+    cout << "\n=== INCREMENT AND DECREMENT ===\n";
 
     int x = 5;
-    cout << "x++ prints: " << x++ << '\n'; // Prints 5, then x becomes 6.
-    cout << "x after x++: " << x << '\n';
+
+    cout << "x++: " << x++ << '\n';
+    cout << "After x++: " << x << '\n';
 
     x = 5;
-    cout << "++x prints: " << ++x << '\n'; // x becomes 6, then prints 6.
+    cout << "++x: " << ++x << '\n';
 
     x = 5;
-    cout << "x-- prints: " << x-- << '\n'; // Prints 5, then x becomes 4.
-    cout << "x after x--: " << x << '\n';
-
-    x = 5;
-    cout << "--x prints: " << --x << '\n'; // x becomes 4, then prints 4.
+    cout << "x--: " << x-- << '\n';
+    cout << "--x: " << --x << '\n';
 }
 
-// SECTION 9 — RELATIONAL, ASSIGNMENT, AND LOGICAL OPERATORS
+// 9. Relational and Logical Operators
 void demonstrateOperators()
 {
-    cout << "\n========== 9. OTHER OPERATORS ==========\n";
+    cout << "\n=== OTHER OPERATORS ===\n";
 
-    int first = 2;
-    int second = 4;
+    int a = 2, b = 4;
+
     cout << boolalpha;
-    cout << "2 < 4:  " << (first < second) << '\n';
-    cout << "2 > 4:  " << (first > second) << '\n';
-    cout << "2 == 4: " << (first == second) << '\n';
-    cout << "2 != 4: " << (first != second) << '\n';
-    cout << "2 <= 4: " << (first <= second) << '\n';
-    cout << "2 >= 4: " << (first >= second) << '\n';
+    cout << "a < b: " << (a < b) << '\n';
+    cout << "a > b: " << (a > b) << '\n';
+    cout << "a == b: " << (a == b) << '\n';
+    cout << "a != b: " << (a != b) << '\n';
+    cout << "(5>3)&&(8<6): " << ((5 > 3) && (8 < 6)) << '\n';
+    cout << "(5>3)||(8<6): " << ((5 > 3) || (8 < 6)) << '\n';
+    cout << noboolalpha;
 
     int score = 10;
     score += 5;
-    cout << "Score after += 5: " << score << '\n';
     score -= 2;
-    cout << "Score after -= 2: " << score << '\n';
 
-    cout << "(5 > 3) && (8 < 6): " << ((5 > 3) && (8 < 6)) << '\n';
-    cout << "(5 > 3) || (8 < 6): " << ((5 > 3) || (8 < 6)) << '\n';
-    cout << "!(5 > 3): " << (!(5 > 3)) << '\n' << noboolalpha;
+    cout << "Updated score: " << score << '\n';
 }
 
-// SECTION 10 — INPUT EXAMPLE
+// 10. Input
 void demonstrateInput()
 {
-    cout << "\n========== 10. INPUT: cin AND getline ==========\n";
+    cout << "\n=== INPUT ===\n";
 
-    string fullName;
+    string name;
     int age{};
 
     cout << "Enter your full name: ";
-    getline(cin, fullName);
+    getline(cin, name);
+
     cout << "Enter your age: ";
-    cin >> age;
 
-    cout << "Hello " << fullName << ", you are " << age << " years old.\n";
+    if (!(cin >> age))
+    {
+        cout << "Invalid input.\n";
+        return;
+    }
 
-    // If cin >> number is followed by getline(), discard the leftover line using:
-    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Hello " << name << ", age " << age << '\n';
 }
 
-// SECTION 11 — ESCAPE SEQUENCES
+// 11. Escape Sequences
 void demonstrateEscapeSequences()
 {
-    cout << "\n========== 11. ESCAPE SEQUENCES ==========\n";
+    cout << "\n=== ESCAPE SEQUENCES ===\n";
 
-    cout << "New line: first line\nsecond line\n";
-    cout << "Tab: Column 1\tColumn 2\n";
-    cout << "Double quote: \"Hello\"\n";
+    cout << "First line\nSecond line\n";
+    cout << "Column 1\tColumn 2\n";
+    cout << "Quote: \"Hello\"\n";
     cout << "Backslash: \\\n";
 }
 
-// SECTION 12 — SOLVED FUNDAMENTALS PROBLEMS
+// 12. Fundamentals Problems
 void solvedFundamentalsProblems()
 {
-    cout << "\n========== 12. SOLVED FUNDAMENTALS PROBLEMS ==========\n";
+    cout << "\n=== FUNDAMENTALS PROBLEMS ===\n";
 
-    {
-        int a = 12, b = 8;
-        cout << "1. Sum of 12 and 8: " << a + b << '\n';
-    }
-    {
-        double a = 10, b = 15, c = 20;
-        cout << "2. Average of 10, 15, 20: " << (a + b + c) / 3.0 << '\n';
-    }
-    {
-        const double PI = 3.14159;
-        double radius = 5;
-        cout << "3. Circle area (radius 5): " << PI * radius * radius << '\n';
-    }
-    {
-        double celsius = 25;
-        double fahrenheit = (celsius * 9.0 / 5.0) + 32;
-        cout << "4. 25 C in Fahrenheit: " << fahrenheit << '\n';
-    }
-    {
-        int salary = 50000;
-        salary += 5000;
-        cout << "5. Salary after increase: Rs. " << salary << '\n';
-    }
-    {
-        int a = 3, b = 9;
-        int temp = a;
-        a = b;
-        b = temp;
-        cout << "6. After swapping: a = " << a << ", b = " << b << '\n';
-    }
-    {
-        int length = 8, width = 4;
-        cout << "7. Rectangle area: " << length * width << '\n';
-        cout << "7. Rectangle perimeter: " << 2 * (length + width) << '\n';
-    }
-    {
-        char character = 'A';
-        cout << "8. Code of 'A': " << static_cast<int>(character) << '\n';
-    }
-    {
-        string name = "Harsh";
-        int age = 24;
-        cout << "9. Hello " << name << ", you are " << age << " years old.\n";
-    }
-    {
-        double bill = 2500.0;
-        double discount = bill * 0.10;
-        cout << "10. Bill after 10% discount: Rs. " << bill - discount << '\n';
-    }
+    cout << "Sum: " << 12 + 8 << '\n';
+    cout << "Average: " << (10 + 15 + 20) / 3.0 << '\n';
+
+    const double PI = 3.14159;
+    int radius = 5;
+
+    cout << "Circle area: " << PI * radius * radius << '\n';
+
+    double celsius = 25;
+    cout << "Fahrenheit: "
+         << celsius * 9.0 / 5.0 + 32 << '\n';
+
+    int salary = 50000;
+    salary += 5000;
+    cout << "Salary: " << salary << '\n';
+
+    int a = 3, b = 9;
+    swap(a, b);
+    cout << "Swapped: " << a << " " << b << '\n';
+
+    cout << "Rectangle area: " << 8 * 4 << '\n';
+    cout << "Character code: " << static_cast<int>('A') << '\n';
+
+    double bill = 2500;
+    cout << "After discount: " << bill * 0.90 << '\n';
 }
-
-// SECTION 13 — IF / ELSE AND DECISION-MAKING
+// 13. If / Else
 void demonstrateIfElse()
 {
-    cout << "\n========== 13. IF / ELSE EXAMPLES ==========\n";
+    cout << "\n=== IF ELSE ===\n";
 
     int age = 18;
-    if (age >= 18)
-        cout << "Age " << age << ": Eligible\n";
-    else
-        cout << "Age " << age << ": Not eligible\n";
+    int number = -5;
 
-    int number = 0;
-    if (number > 0)
-        cout << number << " is positive.\n";
-    else if (number < 0)
-        cout << number << " is negative.\n";
+    if (age >= 18)
+        cout << "Eligible\n";
     else
-        cout << "Number is zero.\n";
+        cout << "Not eligible\n";
+
+    if (number > 0)
+        cout << "Positive\n";
+    else if (number < 0)
+        cout << "Negative\n";
+    else
+        cout << "Zero\n";
 }
 
-// SECTION 14 — SOLVED CONTROL-FLOW PROBLEMS
 int findLarger(int a, int b)
 {
     return (a > b) ? a : b;
 }
 
-string checkEvenOdd(int number)
+string checkEvenOdd(int n)
 {
-    return (number % 2 == 0) ? "Even" : "Odd";
+    return n % 2 == 0 ? "Even" : "Odd";
 }
 
-string checkNumberSign(int number)
+string checkNumberSign(int n)
 {
-    if (number > 0)
+    if (n > 0)
         return "Positive";
-    if (number < 0)
+    if (n < 0)
         return "Negative";
     return "Zero";
 }
 
 bool isLeapYear(int year)
 {
-    return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+    return year % 400 == 0 ||
+           (year % 4 == 0 && year % 100 != 0);
 }
 
 double calculateElectricityBill(int units)
 {
-    // Progressive slab rates from the supplied notes; not an official tariff.
     if (units <= 0)
         return 0.0;
     if (units <= 100)
         return units * 4.2;
+
     if (units <= 200)
-        return (100 * 4.2) + ((units - 100) * 6.0);
+        return 100 * 4.2 + (units - 100) * 6.0;
+
     if (units <= 400)
-        return (100 * 4.2) + (100 * 6.0) + ((units - 200) * 8.0);
-    return (100 * 4.2) + (100 * 6.0) + (200 * 8.0) + ((units - 400) * 13.0);
+        return 100 * 4.2 + 100 * 6.0 + (units - 200) * 8.0;
+
+    return 100 * 4.2 + 100 * 6.0 + 200 * 8.0 + (units - 400) * 13.0;
 }
 
 double priceAfterDiscount(double amount)
 {
-    double discountPercent;
+    double discount = 0;
 
-    if (amount < 1000)
-        discountPercent = 0;
-    else if (amount < 5000)
-        discountPercent = 10;
-    else if (amount < 10000)
-        discountPercent = 20;
-    else
-        discountPercent = 30;
+    if (amount >= 10000)
+        discount = 30;
+    else if (amount >= 5000)
+        discount = 20;
+    else if (amount >= 1000)
+        discount = 10;
 
-    return amount - (amount * discountPercent / 100.0);
+    return amount - amount * discount / 100.0;
 }
 
 string checkVowelOrConsonant(char ch)
 {
-    if (!((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')))
+    if (!((ch >= 'A' && ch <= 'Z') ||
+          (ch >= 'a' && ch <= 'z')))
         return "Not an alphabet";
 
-    if (ch == 'a' || ch == 'A' || ch == 'e' || ch == 'E' ||
-        ch == 'i' || ch == 'I' || ch == 'o' || ch == 'O' ||
+    if (ch == 'a' || ch == 'A' ||
+        ch == 'e' || ch == 'E' ||
+        ch == 'i' || ch == 'I' ||
+        ch == 'o' || ch == 'O' ||
         ch == 'u' || ch == 'U')
         return "Vowel";
 
@@ -372,25 +316,33 @@ string printDayName(int day)
 {
     switch (day)
     {
-        case 1: return "Monday";
-        case 2: return "Tuesday";
-        case 3: return "Wednesday";
-        case 4: return "Thursday";
-        case 5: return "Friday";
-        case 6: return "Saturday";
-        case 7: return "Sunday";
-        default: return "Invalid Day";
+    case 1:
+        return "Monday";
+    case 2:
+        return "Tuesday";
+    case 3:
+        return "Wednesday";
+    case 4:
+        return "Thursday";
+    case 5:
+        return "Friday";
+    case 6:
+        return "Saturday";
+    case 7:
+        return "Sunday";
+    default:
+        return "Invalid Day";
     }
 }
 
 string checkAgeEligibility(int age)
 {
-    return (age >= 18) ? "Eligible" : "Not Eligible";
+    return age >= 18 ? "Eligible" : "Not Eligible";
 }
 
-string divisibleByFive(int number)
+string divisibleByFive(int n)
 {
-    return (number % 5 == 0) ? "Yes" : "No";
+    return n % 5 == 0 ? "Yes" : "No";
 }
 
 string checkLetterCase(char ch)
@@ -404,7 +356,6 @@ string checkLetterCase(char ch)
 
 string seasonForMonth(int month)
 {
-    // This follows the supplied notes' season mapping, not a local climate model.
     if (month == 12 || month == 1 || month == 2)
         return "Winter";
     if (month >= 3 && month <= 5)
@@ -413,75 +364,94 @@ string seasonForMonth(int month)
         return "Summer";
     if (month >= 9 && month <= 11)
         return "Autumn";
+
     return "Invalid Month";
 }
 
+// 14. Solved Control-Flow Problems
 void solvedControlFlowProblems()
 {
-    cout << "\n========== 14. SOLVED CONTROL-FLOW PROBLEMS ==========\n";
+    cout << "\n=== CONTROL-FLOW PROBLEMS ===\n";
 
-    cout << "1. Larger of 12 and 8: " << findLarger(12, 8) << '\n';
-    cout << "2. 7 is: " << checkEvenOdd(7) << '\n';
-    cout << "3. -4 is: " << checkNumberSign(-4) << '\n';
-    cout << "4. Year 2024: " << (isLeapYear(2024) ? "Leap Year" : "Not a Leap Year") << '\n';
-    cout << "5. Bill for 250 units: Rs. " << calculateElectricityBill(250) << '\n';
-    cout << "6. Price for Rs. 6000 after discount: Rs. " << priceAfterDiscount(6000) << '\n';
-    cout << "7. Character 'E': " << checkVowelOrConsonant('E') << '\n';
-    cout << "8. Day 3: " << printDayName(3) << '\n';
-    cout << "9. Age 19: " << checkAgeEligibility(19) << '\n';
-    cout << "10. Is 35 divisible by 5? " << divisibleByFive(35) << '\n';
-    cout << "11. Character 'G': " << checkLetterCase('G') << '\n';
-    cout << "12. Month 7: " << seasonForMonth(7) << '\n';
+    cout << "Larger: " << findLarger(12, 8) << '\n';
+    cout << "7 is " << checkEvenOdd(7) << '\n';
+    cout << "-4 is " << checkNumberSign(-4) << '\n';
+
+    cout << "2024: "
+         << (isLeapYear(2024) ? "Leap Year" : "Not Leap Year")
+         << '\n';
+
+    cout << fixed << setprecision(2);
+
+    cout << "Electricity bill: "
+         << calculateElectricityBill(250) << '\n';
+
+    cout << "Discounted price: "
+         << priceAfterDiscount(6000) << '\n';
+
+    cout << "E: " << checkVowelOrConsonant('E') << '\n';
+    cout << "Day 3: " << printDayName(3) << '\n';
+    cout << "Age 19: " << checkAgeEligibility(19) << '\n';
+    cout << "35 divisible by 5: " << divisibleByFive(35) << '\n';
+    cout << "G: " << checkLetterCase('G') << '\n';
+    cout << "Month 7: " << seasonForMonth(7) << '\n';
+
+    cout << defaultfloat;
 }
 
-// SECTION 15 — LOOP EXPLANATION AND EXAMPLES
+// 15. Loops
 void demonstrateLoops()
 {
-    cout << "\n========== 15. LOOP EXAMPLES ==========\n";
+    cout << "\n=== LOOPS ===\n";
 
-    cout << "for loop: print Hello 3 times\n";
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; ++i)
         cout << "Hello\n";
 
-    cout << "while loop: countdown from 5\n";
     int count = 5;
+
     while (count >= 1)
-    {
-        cout << count << ' ';
-        --count;
-    }
+        cout << count-- << ' ';
+
     cout << '\n';
 
-    cout << "do-while loop: runs at least once\n";
     int value = 1;
+
     do
     {
-        cout << "value = " << value << '\n';
+        cout << value << '\n';
         ++value;
     } while (value <= 2);
 }
 
-// SECTION 16 — SOLVED LOOP PROBLEMS
+// 16. Loop Problems
 long long sumFromOneToN(int n)
 {
+    if (n <= 0)
+        return 0;
+
     long long sum = 0;
+
     for (int i = 1; i <= n; ++i)
         sum += i;
+
     return sum;
 }
 
 long long factorial(int n)
 {
     if (n < 0)
-        return -1; // Negative factorial is not defined here.
+        return -1;
 
     long long answer = 1;
+
     for (int i = 1; i <= n; ++i)
     {
         if (answer > numeric_limits<long long>::max() / i)
-            return -1; // Indicates overflow for this return type.
+            return -1;
+
         answer *= i;
     }
+
     return answer;
 }
 
@@ -489,7 +459,7 @@ void printFactors(int n)
 {
     if (n <= 0)
     {
-        cout << "Factors are shown for positive integers only.";
+        cout << "Positive integers only";
         return;
     }
 
@@ -512,25 +482,31 @@ bool isPrime(int n)
 
 int sumDigits(int n)
 {
-    if (n < 0)
-        n = -n;
-
-    int sum = 0;
-    while (n > 0)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum; // For input 0, the sum is 0.
-}
-
-long long reverseNumber(int n)
-{
-    long long reversed = 0;
     long long value = n;
 
     if (value < 0)
         value = -value;
+
+    int sum = 0;
+
+    while (value > 0)
+    {
+        sum += static_cast<int>(value % 10);
+        value /= 10;
+    }
+
+    return sum;
+}
+
+long long reverseNumber(int n)
+{
+    long long value = n;
+    bool negative = value < 0;
+
+    if (negative)
+        value = -value;
+
+    long long reversed = 0;
 
     while (value > 0)
     {
@@ -538,92 +514,348 @@ long long reverseNumber(int n)
         value /= 10;
     }
 
-    return (n < 0) ? -reversed : reversed;
+    return negative ? -reversed : reversed;
 }
 
 bool isPalindrome(int n)
 {
     if (n < 0)
         return false;
-
     return static_cast<long long>(n) == reverseNumber(n);
 }
 
 void solvedLoopProblems()
 {
-    cout << "\n========== 16. SOLVED LOOP PROBLEMS ==========\n";
+    cout << "\n=== LOOP PROBLEMS ===\n";
 
-    // Problem 1: Print Hello n times. Example n = 3.
-    cout << "1. Print Hello 3 times:\n";
-    for (int i = 0; i < 3; ++i)
-        cout << "Hello\n";
+    cout << "Sum 1 to 10: " << sumFromOneToN(10) << '\n';
+    cout << "Factorial 5: " << factorial(5) << '\n';
 
-    // Problem 2: Print from n down to 1.
-    cout << "2. Countdown from 5: ";
-    for (int i = 5; i >= 1; --i)
-        cout << i << ' ';
-    cout << '\n';
-
-    // Problem 3: Sum all integers from 1 through n.
-    cout << "3. Sum from 1 to 10: " << sumFromOneToN(10) << '\n';
-
-    // Problem 4: Factorial.
-    long long fact = factorial(5);
-    cout << "4. 5! = ";
-    if (fact == -1)
-        cout << "Not representable / invalid input\n";
-    else
-        cout << fact << '\n';
-
-    // Problem 5: Print all factors.
-    cout << "5. Factors of 12: ";
+    cout << "Factors of 12: ";
     printFactors(12);
     cout << '\n';
 
-    // Problem 6: Prime check.
-    cout << "6. Is 29 prime? " << (isPrime(29) ? "Prime" : "Not Prime") << '\n';
+    cout << "29 prime? " << (isPrime(29) ? "Yes" : "No") << '\n';
+    cout << "Digit sum of 582: " << sumDigits(582) << '\n';
+    cout << "Reverse 1234: " << reverseNumber(1234) << '\n';
 
-    // Problem 7: Sum digits.
-    cout << "7. Sum of digits of 582: " << sumDigits(582) << '\n';
-
-    // Problem 8: Reverse a number.
-    cout << "8. Reverse of 1234: " << reverseNumber(1234) << '\n';
-
-    // Problem 9: Palindrome check.
-    cout << "9. Is 1221 a palindrome? "
-         << (isPalindrome(1221) ? "Palindrome" : "Not Palindrome") << '\n';
+    cout << "1221 palindrome? "
+         << (isPalindrome(1221) ? "Yes" : "No") << '\n';
 }
 
-// MAIN — program execution starts here. Keep exactly one main().
+// 17. Functions
+void printHelloWithDeclaration();
+
+void printHello()
+{
+    cout << "Hello from a function!\n";
+}
+
+void printHelloWithDeclaration()
+{
+    cout << "Declared and defined function!\n";
+}
+
+void demonstrateFunctions()
+{
+    cout << "\n=== FUNCTIONS ===\n";
+    printHello();
+    printHelloWithDeclaration();
+}
+// 18. Linear Search
+int searchLinear(int arr[], int n, int target)
+{
+    for (int i = 0; i < n; ++i)
+        if (arr[i] == target)
+            return i;
+
+    return -1;
+}
+
+void demonstrateLinearSearch()
+{
+    cout << "\n=== LINEAR SEARCH ===\n";
+
+    int arr[] = {10, 23, 45, 70, 11, 15};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Index: " << searchLinear(arr, n, 70) << '\n';
+}
+
+// 19. Binary Search
+int searchBinary(int arr[], int n, int target)
+{
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == target)
+            return mid;
+
+        if (arr[mid] < target)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+
+    return -1;
+}
+
+void demonstrateBinarySearch()
+{
+    cout << "\n=== BINARY SEARCH ===\n";
+
+    int arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Index: " << searchBinary(arr, n, 23) << '\n';
+}
+
+// 20. Bubble Sort
+void demonstrateBubbleSort()
+{
+    cout << "\n=== BUBBLE SORT ===\n";
+
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+
+    for (int i = 0; i < static_cast<int>(arr.size()) - 1; ++i)
+    {
+        bool swapped = false;
+
+        for (int j = 0;
+             j < static_cast<int>(arr.size()) - i - 1;
+             ++j)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+
+        if (!swapped)
+            break;
+    }
+
+    for (int value : arr)
+        cout << value << ' ';
+
+    cout << '\n';
+}
+
+// 21. Right Rotation
+void rightRotate(vector<int> &arr, int k)
+{
+    int n = static_cast<int>(arr.size());
+
+    if (n == 0)
+        return;
+
+    k = ((k % n) + n) % n;
+
+    if (k == 0)
+        return;
+
+    reverse(arr.begin(), arr.end());
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
+}
+
+void demonstrateRightRotation()
+{
+    cout << "\n=== RIGHT ROTATION ===\n";
+
+    vector<int> arr = {1, 2, 3, 4, 5};
+
+    rightRotate(arr, 2);
+
+    for (int value : arr)
+        cout << value << ' ';
+
+    cout << '\n';
+}
+
+// 22. Most Frequent Even Integer
+class SolutionFrequency
+{
+public:
+    int mostFrequentEven(const vector<int> &arr)
+    {
+        unordered_map<int, int> frequency;
+
+        for (int num : arr)
+            if (num % 2 == 0)
+                ++frequency[num];
+
+        if (frequency.empty())
+            return -1;
+
+        int result = -1;
+        int maxFrequency = 0;
+
+        for (const auto &entry : frequency)
+        {
+            int num = entry.first;
+            int freq = entry.second;
+
+            if (freq > maxFrequency ||
+                (freq == maxFrequency && num < result))
+            {
+                maxFrequency = freq;
+                result = num;
+            }
+        }
+
+        return result;
+    }
+};
+
+void demonstrateMostFrequentEven()
+{
+    cout << "\n=== MOST FREQUENT EVEN INTEGER ===\n";
+
+    vector<int> arr = {0, 1, 2, 2, 4, 4, 1};
+
+    SolutionFrequency solution;
+
+    cout << "Answer: "
+         << solution.mostFrequentEven(arr) << '\n';
+}
+
+// 23. Number Sign
+class SolutionNumberCheck
+{
+public:
+    string checkNumber(int n)
+    {
+        if (n > 0)
+            return "Positive";
+        if (n < 0)
+            return "Negative";
+        return "Zero";
+    }
+};
+
+void demonstrateNumberCheck()
+{
+    cout << "\n=== NUMBER SIGN ===\n";
+
+    SolutionNumberCheck solution;
+
+    cout << solution.checkNumber(15) << '\n';
+    cout << solution.checkNumber(-5) << '\n';
+    cout << solution.checkNumber(0) << '\n';
+}
+// 24. Conditional Minimum Logic
+bool calculateConditionalMinimum(
+    const vector<long long> &values,
+    const vector<char> &categories,
+    long long &answer)
+{
+    if (values.size() != categories.size())
+        return false;
+
+    long long minA = LLONG_MAX;
+    long long minB = LLONG_MAX;
+    long long minC = LLONG_MAX;
+
+    bool hasA = false;
+    bool hasB = false;
+    bool hasC = false;
+
+    for (size_t i = 0; i < values.size(); ++i)
+    {
+        if (categories[i] == 'a')
+        {
+            minA = min(minA, values[i]);
+            hasA = true;
+        }
+        else if (categories[i] == 'b')
+        {
+            minB = min(minB, values[i]);
+            hasB = true;
+        }
+        else if (categories[i] == 'c')
+        {
+            minC = min(minC, values[i]);
+            hasC = true;
+        }
+    }
+
+    if (!hasA || !hasB || !hasC)
+        return false;
+
+    answer = min(minA + minB, minC);
+    return true;
+}
+
+void demonstrateMinLogic()
+{
+    cout << "\n=== CONDITIONAL MINIMUM ===\n";
+
+    vector<long long> values = {5, 2, 8};
+    vector<char> categories = {'a', 'b', 'c'};
+
+    long long answer{};
+
+    if (calculateConditionalMinimum(values, categories, answer))
+        cout << "Answer: " << answer << '\n';
+    else
+        cout << "A required category is missing.\n";
+}
+
+// ============================================================
+// MAIN FUNCTION — ONLY ONE MAIN IN THE ENTIRE FILE
+// ============================================================
+
 int main()
 {
-    cout << fixed << setprecision(2);
-    cout << "C++ FUNDAMENTALS — ORGANIZED NOTES AND SOLUTIONS\n";
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(nullptr);
 
-    demonstrateVariablesAndConstants();
-    demonstrateDataTypes();
-    demonstrateInitialization();
-    demonstrateTypeConversion();
-    demonstrateCharacters();
-    demonstrateNumberSystems();
-    demonstrateArithmetic();
-    demonstrateIncrementDecrement();
-    demonstrateOperators();
-    demonstrateEscapeSequences();
-    solvedFundamentalsProblems();
-    demonstrateIfElse();
-    solvedControlFlowProblems();
-    demonstrateLoops();
-    solvedLoopProblems();
+    // cout << "COMPLETE C++ FUNDAMENTALS AND DSA\n";
 
-    cout << "\nEnd of program. All sections and solved problems displayed.\n";
+    // // Fundamentals
+    // demonstrateVariables();
+    // demonstrateDataTypes();
+    // demonstrateInitialization();
+    // demonstrateTypeConversion();
+    // demonstrateCharacters();
+    // demonstrateNumberSystems();
+    // demonstrateArithmetic();
+    // demonstrateIncrementDecrement();
+    // demonstrateOperators();
+    // demonstrateEscapeSequences();
+    // solvedFundamentalsProblems();
 
-    // For interactive input practice:
-    // 1. Comment out the demonstration calls above.
-    // 2. Uncomment the line below.
+    // // Control flow
+    // demonstrateIfElse();
+    // solvedControlFlowProblems();
+
+    // // Loops and functions
+    // demonstrateLoops();
+    // solvedLoopProblems();
+    // demonstrateFunctions();
+
+    // // DSA algorithms
+    // demonstrateLinearSearch();
+    // demonstrateBinarySearch();
+    // demonstrateBubbleSort();
+    // demonstrateRightRotation();
+    // demonstrateMostFrequentEven();
+    // demonstrateNumberCheck();
+    // demonstrateMinLogic();
+
+    // For interactive input practice, comment out the other calls
+    // and uncomment the following line:
     // demonstrateInput();
 
-    // Nested loops and do-while/while loop practice can be added here.
+    // cout << "\nAll sections completed successfully!\n";
 
+    // array is a liner  DS  store data of smae type
+    
     return 0;
 }
