@@ -1004,7 +1004,14 @@ int main()
     // Linear traversal visits each element in order, from first to last.
 
     // array creation
-    int arr[5];
+    int arr[5] = {
+        1,
+        2,
+        3,
+        4,
+        5,
+    };
+    
 
     return 0;
 }
