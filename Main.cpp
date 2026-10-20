@@ -807,6 +807,40 @@ void demonstrateMinLogic()
         cout << "A required category is missing.\n";
 }
 
+// 25. Arrays and Linear Traversal
+// A built-in array keeps a fixed number of values of one type together.
+// This declaration creates five integers and initializes them with example values.
+void demonstrateArrays()
+{
+    cout << "\n=== ARRAYS AND LINEAR TRAVERSAL ===\n";
+
+    int numbers[] = {10, 20, 30, 40, 50};
+    // This sizeof formula works here because numbers is an array in this same scope.
+    const size_t length = sizeof(numbers) / sizeof(numbers[0]);
+
+    // Array indexes start at zero: numbers[0] is 10 and numbers[2] is 30.
+    // Valid indexes are 0 through length - 1; using another index is out of bounds.
+    cout << "First element: " << numbers[0] << '\n';
+    cout << "Element at index 2: " << numbers[2] << '\n';
+
+    // A loop can visit every index in order. This is called linear traversal.
+    cout << "Elements from first to last: ";
+    for (size_t i = 0; i < length; ++i)
+        cout << numbers[i] << ' ';
+
+    // Example: 10 + 20 + 30 + 40 + 50 = 150.
+    int sum = 0;
+    for (size_t i = 0; i < length; ++i)
+        sum += numbers[i];
+
+    cout << "\nSum of elements: " << sum << '\n';
+
+    // Empty braces initialize every element to zero.
+    int zeroInitialized[3]{};
+    cout << "First value in a zero-initialized array: "
+         << zeroInitialized[0] << '\n';
+}
+
 // ============================================================
 // MAIN FUNCTION — ONLY ONE MAIN IN THE ENTIRE FILE
 // ============================================================
@@ -848,14 +882,18 @@ int main()
     // demonstrateMostFrequentEven();
     // demonstrateNumberCheck();
     // demonstrateMinLogic();
+    // demonstrateArrays();
 
     // For interactive input practice, comment out the other calls
     // and uncomment the following line:
     // demonstrateInput();
-
     // cout << "\nAll sections completed successfully!\n";
 
-    // array is a liner  DS  store data of smae type
-    
+    // Arrays store values of the same type in contiguous memory.
+    // Linear traversal visits each element in order, from first to last.
+
+    // array creation
+    int arr[5];
+
     return 0;
 }
