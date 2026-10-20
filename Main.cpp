@@ -10,7 +10,13 @@
 
 using namespace std;
 
+// Beginner's guide: each section below focuses on one C++ idea.
+// Read the notes, predict the printed result, then run that section's
+// demonstrate... function to compare your prediction with the output.
+
 // 1. Variables and Constants
+// A variable is a named place for a value that may change.
+// A const variable is fixed after initialization. Example: 2000 - 500 = 1500.
 void demonstrateVariables()
 {
     cout << "\n=== VARIABLES AND CONSTANTS ===\n";
@@ -26,6 +32,10 @@ void demonstrateVariables()
 }
 
 // 2. Data Types
+// Types describe what kind of value a variable can hold:
+// int for whole numbers, float/double for decimals, char for one character,
+// and bool for true/false. The f suffix makes 5.9f a float literal.
+// boolalpha prints true/false as words; sizeof reports storage size in bytes.
 void demonstrateDataTypes()
 {
     cout << "\n=== DATA TYPES ===\n";
@@ -46,6 +56,9 @@ void demonstrateDataTypes()
 }
 
 // 3. Initialization
+// Initialization gives a variable its first value. Empty braces are a safe
+// default: number and decimal become 0, and name becomes an empty string.
+// Prefer initialized variables so you never accidentally use an unknown value.
 void demonstrateInitialization()
 {
     cout << "\n=== INITIALIZATION ===\n";
@@ -60,6 +73,9 @@ void demonstrateInitialization()
 }
 
 // 4. Type Conversion
+// A value can be converted from one type to another. int-to-double conversion
+// preserves the value; static_cast<int>(10.75) becomes 10 (truncation, not rounding).
+// Integer division 10 / 3 is 3; converting before division gives about 3.333.
 void demonstrateTypeConversion()
 {
     cout << "\n=== TYPE CONVERSION ===\n";
@@ -78,6 +94,8 @@ void demonstrateTypeConversion()
 }
 
 // 5. Characters
+// A char stores one character, written in single quotes. '1' is a character,
+// not the integer 1. Casting a char to int displays its execution character code.
 void demonstrateCharacters()
 {
     cout << "\n=== CHARACTERS ===\n";
@@ -91,6 +109,8 @@ void demonstrateCharacters()
 }
 
 // 6. Number Systems
+// These four literals have the same value: decimal 10, octal 012,
+// binary 0b1010, and hexadecimal 0xA. In C++, a leading zero means octal.
 void demonstrateNumberSystems()
 {
     cout << "\n=== NUMBER SYSTEMS ===\n";
@@ -102,6 +122,8 @@ void demonstrateNumberSystems()
 }
 
 // 7. Arithmetic Operators
+// + adds, - subtracts, * multiplies, / divides, and % gives the remainder.
+// With a=20 and b=6: 20/6 is 3 because both operands are integers; 20%6 is 2.
 void demonstrateArithmetic()
 {
     cout << "\n=== ARITHMETIC OPERATORS ===\n";
@@ -116,6 +138,9 @@ void demonstrateArithmetic()
 }
 
 // 8. Increment and Decrement
+// ++ adds one and -- subtracts one. Postfix x++ uses the old value in the
+// expression, then changes x; prefix ++x changes x first, then uses the new value.
+// Starting at 5, cout << x++ prints 5 and leaves x equal to 6.
 void demonstrateIncrementDecrement()
 {
     cout << "\n=== INCREMENT AND DECREMENT ===\n";
@@ -134,6 +159,9 @@ void demonstrateIncrementDecrement()
 }
 
 // 9. Relational and Logical Operators
+// Comparisons such as <, >, ==, and != produce a bool. && means both conditions
+// must be true; || means at least one is true. += and -= update a variable:
+// score=10; score+=5; score-=2 leaves score equal to 13.
 void demonstrateOperators()
 {
     cout << "\n=== OTHER OPERATORS ===\n";
@@ -157,6 +185,9 @@ void demonstrateOperators()
 }
 
 // 10. Input
+// getline reads a whole line, including spaces; >> reads a formatted value such
+// as an integer. Always check the input operation: entering "twenty" for age
+// makes cin >> age fail, so this example prints an error instead of using age.
 void demonstrateInput()
 {
     cout << "\n=== INPUT ===\n";
@@ -179,6 +210,8 @@ void demonstrateInput()
 }
 
 // 11. Escape Sequences
+// A backslash starts an escape sequence: \n is a new line, \t is a tab,
+// \" prints a quote, and \\ prints one literal backslash.
 void demonstrateEscapeSequences()
 {
     cout << "\n=== ESCAPE SEQUENCES ===\n";
@@ -190,6 +223,9 @@ void demonstrateEscapeSequences()
 }
 
 // 12. Fundamentals Problems
+// Worked examples combine basic expressions: average=(10+15+20)/3.0 keeps the
+// fractional part; circle area is PI*r*r; Celsius-to-Fahrenheit is C*9/5+32.
+// For C=25 the result is 77. A 10% discount on 2500 leaves 2250.
 void solvedFundamentalsProblems()
 {
     cout << "\n=== FUNDAMENTALS PROBLEMS ===\n";
@@ -221,6 +257,9 @@ void solvedFundamentalsProblems()
     cout << "After discount: " << bill * 0.90 << '\n';
 }
 // 13. If / Else
+// if runs code when its condition is true; else handles the other case.
+// else-if lets us test more than two cases. With age=18 the first condition
+// passes; with number=-5 the negative branch runs.
 void demonstrateIfElse()
 {
     cout << "\n=== IF ELSE ===\n";
@@ -241,16 +280,22 @@ void demonstrateIfElse()
         cout << "Zero\n";
 }
 
+// The ?: conditional operator is a compact expression-form if/else.
+// Example: findLarger(12, 8) returns 12.
 int findLarger(int a, int b)
 {
     return (a > b) ? a : b;
 }
 
+// An integer is even when division by 2 leaves remainder 0; otherwise it is odd.
+// Example: checkEvenOdd(7) returns "Odd".
 string checkEvenOdd(int n)
 {
     return n % 2 == 0 ? "Even" : "Odd";
 }
 
+// Check positive and negative first; if neither condition is true, the value is 0.
+// Examples: checkNumberSign(-4) returns "Negative"; checkNumberSign(0) returns "Zero".
 string checkNumberSign(int n)
 {
     if (n > 0)
@@ -260,12 +305,17 @@ string checkNumberSign(int n)
     return "Zero";
 }
 
+// A leap year is divisible by 400, or divisible by 4 but not by 100.
+// Examples: 2024 and 2000 are leap years; 1900 is not.
 bool isLeapYear(int year)
 {
     return year % 400 == 0 ||
            (year % 4 == 0 && year % 100 != 0);
 }
 
+// This sample bill uses progressive tiers: each block of units has its own rate.
+// For 250 units the calculation is 100*4.2 + 100*6.0 + 50*8.0 = 1020.
+// Non-positive input returns 0; the rates are only an example, not a real tariff.
 double calculateElectricityBill(int units)
 {
     if (units <= 0)
@@ -282,6 +332,8 @@ double calculateElectricityBill(int units)
     return 100 * 4.2 + 100 * 6.0 + 200 * 8.0 + (units - 400) * 13.0;
 }
 
+// Choose a discount based on the largest threshold reached, then subtract it.
+// Example: 6000 reaches the 20% tier, so 6000 - 1200 = 4800.
 double priceAfterDiscount(double amount)
 {
     double discount = 0;
@@ -296,6 +348,9 @@ double priceAfterDiscount(double amount)
     return amount - amount * discount / 100.0;
 }
 
+// First reject characters outside the English letter ranges. Then check whether
+// the letter is one of a/e/i/o/u in either case. Examples: 'E' -> Vowel,
+// 'G' -> Consonant, and '7' -> Not an alphabet.
 string checkVowelOrConsonant(char ch)
 {
     if (!((ch >= 'A' && ch <= 'Z') ||
@@ -312,6 +367,8 @@ string checkVowelOrConsonant(char ch)
     return "Consonant";
 }
 
+// switch is useful for matching one value against several exact options.
+// Here 1 means Monday and 7 means Sunday; all other numbers are rejected.
 string printDayName(int day)
 {
     switch (day)
@@ -335,6 +392,8 @@ string printDayName(int day)
     }
 }
 
+// These small checks reuse comparison and remainder operators.
+// Example: age 19 is eligible; 35 % 5 is 0, so 35 is divisible by five.
 string checkAgeEligibility(int age)
 {
     return age >= 18 ? "Eligible" : "Not Eligible";
@@ -345,6 +404,8 @@ string divisibleByFive(int n)
     return n % 5 == 0 ? "Yes" : "No";
 }
 
+// Check whether a letter lies in the uppercase or lowercase English range.
+// A digit or punctuation mark matches neither range.
 string checkLetterCase(char ch)
 {
     if (ch >= 'A' && ch <= 'Z')
@@ -354,6 +415,8 @@ string checkLetterCase(char ch)
     return "Not an alphabet";
 }
 
+// Group month numbers into seasons; winter wraps around the end of the year.
+// Examples: 1 -> Winter, 7 -> Summer, and 13 -> Invalid Month.
 string seasonForMonth(int month)
 {
     if (month == 12 || month == 1 || month == 2)
@@ -369,6 +432,8 @@ string seasonForMonth(int month)
 }
 
 // 14. Solved Control-Flow Problems
+// This section calls the helpers with sample inputs so you can see their results.
+// Change an argument, predict the answer, then run again to practice tracing logic.
 void solvedControlFlowProblems()
 {
     cout << "\n=== CONTROL-FLOW PROBLEMS ===\n";
@@ -400,6 +465,9 @@ void solvedControlFlowProblems()
 }
 
 // 15. Loops
+// for is convenient when the repetition count is known; while checks its
+// condition before each repetition; do/while always runs at least once.
+// Here for prints 3 greetings, while counts down from 5, and do/while prints 1, 2.
 void demonstrateLoops()
 {
     cout << "\n=== LOOPS ===\n";
@@ -424,6 +492,8 @@ void demonstrateLoops()
 }
 
 // 16. Loop Problems
+// Add each integer from 1 through n. Non-positive n has no terms, so the sum is 0.
+// Example: sumFromOneToN(4) calculates 1+2+3+4 and returns 10.
 long long sumFromOneToN(int n)
 {
     if (n <= 0)
@@ -437,6 +507,9 @@ long long sumFromOneToN(int n)
     return sum;
 }
 
+// Factorial n! is 1*2*...*n; 0! is 1. Negative input is invalid here.
+// The function returns -1 for invalid input or overflow. Before multiplying,
+// it checks whether the product would exceed long long's maximum value.
 long long factorial(int n)
 {
     if (n < 0)
@@ -455,6 +528,8 @@ long long factorial(int n)
     return answer;
 }
 
+// A factor divides a number with no remainder. For 12, the factors are
+// 1, 2, 3, 4, 6, and 12. This beginner version checks every candidate up to n.
 void printFactors(int n)
 {
     if (n <= 0)
@@ -468,6 +543,10 @@ void printFactors(int n)
             cout << i << ' ';
 }
 
+// A prime number is greater than 1 and has no divisors except 1 and itself.
+// Testing only through sqrt(n) is enough: factors come in pairs.
+// The condition i <= n/i avoids calculating i*i, which could overflow.
+// Examples: 29 is prime; 21 is not (21 % 3 == 0).
 bool isPrime(int n)
 {
     if (n <= 1)
@@ -480,6 +559,8 @@ bool isPrime(int n)
     return true;
 }
 
+// Take the last digit with % 10 and remove it with / 10, repeating until empty.
+// Example: 582 gives 2+8+5 = 15. The wider temporary safely handles INT_MIN.
 int sumDigits(int n)
 {
     long long value = n;
@@ -498,6 +579,9 @@ int sumDigits(int n)
     return sum;
 }
 
+// Build a reversed number by appending its last digit each time.
+// Example: 1234 becomes 4321; reversing 120 gives 21 because integers do not
+// preserve leading zeroes. A negative input keeps its sign.
 long long reverseNumber(int n)
 {
     long long value = n;
@@ -517,6 +601,8 @@ long long reverseNumber(int n)
     return negative ? -reversed : reversed;
 }
 
+// A palindrome reads the same in either direction. Negative values are false
+// in this example. Examples: 1221 -> true, 123 -> false.
 bool isPalindrome(int n)
 {
     if (n < 0)
@@ -524,6 +610,8 @@ bool isPalindrome(int n)
     return static_cast<long long>(n) == reverseNumber(n);
 }
 
+// Sample calls for the loop helpers. Try changing 10, 5, 12, 29, 582, or 1234
+// and predict each result before running the program.
 void solvedLoopProblems()
 {
     cout << "\n=== LOOP PROBLEMS ===\n";
@@ -544,6 +632,9 @@ void solvedLoopProblems()
 }
 
 // 17. Functions
+// A function packages reusable work. A declaration gives its name and signature
+// before its definition; a call executes it. The declaration below allows code
+// to refer to printHelloWithDeclaration before its body appears.
 void printHelloWithDeclaration();
 
 void printHello()
@@ -563,6 +654,9 @@ void demonstrateFunctions()
     printHelloWithDeclaration();
 }
 // 18. Linear Search
+// Linear search checks values from left to right and returns the first matching
+// index. It returns -1 when not found. Example: 70 is at index 3 in this array.
+// It works on unsorted data and may check every element: O(n) time.
 int searchLinear(int arr[], int n, int target)
 {
     for (int i = 0; i < n; ++i)
@@ -581,8 +675,10 @@ void demonstrateLinearSearch()
 
     cout << "Index: " << searchLinear(arr, n, 70) << '\n';
 }
-
 // 19. Binary Search
+// Binary search halves the remaining range after each comparison, taking O(log n)
+// time. Its required condition is that the input is sorted.
+// Example: 23 is at index 5 in the sorted sample; an unsorted array can give a wrong answer.
 int searchBinary(int arr[], int n, int target)
 {
     int low = 0;
@@ -615,6 +711,9 @@ void demonstrateBinarySearch()
 }
 
 // 20. Bubble Sort
+// Compare neighboring values and swap them when they are in the wrong order.
+// Each pass moves a large value toward the end; if no swap occurs, sorting is done.
+// Example: {3,1,2} becomes {1,2,3}. This simple algorithm is generally O(n^2).
 void demonstrateBubbleSort()
 {
     cout << "\n=== BUBBLE SORT ===\n";
@@ -647,6 +746,9 @@ void demonstrateBubbleSort()
 }
 
 // 21. Right Rotation
+// A right rotation moves the last k items to the front.
+// Example: {1,2,3,4,5} rotated right by 2 becomes {4,5,1,2,3}.
+// Reversing the whole range, then each part, achieves this without a second vector.
 void rightRotate(vector<int> &arr, int k)
 {
     int n = static_cast<int>(arr.size());
@@ -679,6 +781,9 @@ void demonstrateRightRotation()
 }
 
 // 22. Most Frequent Even Integer
+// Count only even values in a hash map; odd values are ignored.
+// Return -1 if there are no even values. If the most frequent count is tied,
+// choose the smaller value. Example: {2,2,4,4} returns 2.
 class SolutionFrequency
 {
 public:
@@ -726,6 +831,8 @@ void demonstrateMostFrequentEven()
 }
 
 // 23. Number Sign
+// A class groups related operations; this method returns a string rather than
+// printing directly. Examples: 15 -> "Positive", -5 -> "Negative", 0 -> "Zero".
 class SolutionNumberCheck
 {
 public:
@@ -750,6 +857,9 @@ void demonstrateNumberCheck()
     cout << solution.checkNumber(0) << '\n';
 }
 // 24. Conditional Minimum Logic
+// Find the minimum value in each category, then compare minA+minB with minC.
+// Example: a={5}, b={2}, c={8} gives min(5+2, 8) = 7.
+// Return false if the arrays differ in length or a required category is absent.
 bool calculateConditionalMinimum(
     const vector<long long> &values,
     const vector<char> &categories,
@@ -796,6 +906,7 @@ void demonstrateMinLogic()
 {
     cout << "\n=== CONDITIONAL MINIMUM ===\n";
 
+    // Matching positions form pairs: value 5 belongs to a, 2 to b, and 8 to c.
     vector<long long> values = {5, 2, 8};
     vector<char> categories = {'a', 'b', 'c'};
 
